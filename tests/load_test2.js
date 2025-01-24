@@ -16,7 +16,7 @@ export let options = {
 
 // Основная функция, выполняемая каждым виртуальным пользователем
 export default function () {
-  const res = http.get('https://test.k6.io/);
+  const res = http.get('https://test.k6.io');
   if (res.status !== 200) {
     console.error(`Request failed. Status: ${res.status}`);
   }
