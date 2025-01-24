@@ -29,4 +29,4 @@ jobs:
       # Step 3: Run the k6 test script
       - name: Run k6 tests
         run: |
-          k6 run ./tests/load_tests.js
+          k6 run ./tests/load_test.js
