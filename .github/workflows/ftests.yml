@@ -39,7 +39,7 @@ jobs:
           sudo tar -zxf allure.tgz -C /opt/
           sudo ln -sf /opt/allure-2.23.0/bin/allure /usr/bin/allure
 
-      # Step 5: Run Playwright tests with Allure
+      # Step 5: Run Playwright tests
       - name: Run Playwright tests
         run: |
           pytest --alluredir=results/allure-results
@@ -48,6 +48,7 @@ jobs:
       - name: Generate Allure HTML Report
         run: |
           allure generate results/allure-results -o results/allure-report --clean
+          ls -la results/allure-report  # Проверка созданных файлов
 
       # Step 7: Deploy Allure Report to GitHub Pages
       - name: Deploy Allure Report to GitHub Pages
