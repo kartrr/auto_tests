@@ -17,9 +17,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Step 2: Install k6
+      # Step 2: Install k6 from deb package
       - name: Install k6
         run: |
+          sudo apt update
+          curl -s https://dl.k6.io/key.gpg | sudo apt-key add -
+          echo "deb https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
           sudo apt update
           sudo apt install -y k6
 
