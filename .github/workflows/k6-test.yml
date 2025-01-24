@@ -17,16 +17,36 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Step 2: Install k6 from deb package
-      - name: Install k6
+      # Step 2: Install k6 and Node.js
+      - name: Install k6 and Node.js
         run: |
           sudo apt update
           curl -s https://dl.k6.io/key.gpg | sudo apt-key add -
           echo "deb https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
           sudo apt update
           sudo apt install -y k6
+          curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+          sudo apt install -y nodejs
 
-      # Step 3: Run the k6 test script
+      # Step 3: Install k6-reporter
+      - name: Install k6-reporter
+        run: |
+          npm install https://github.com/benc-uk/k6-reporter -g
+
+      # Step 4: Run k6 tests and save JSON output
       - name: Run k6 tests
         run: |
-          k6 run ./tests/load_test.js
+          mkdir -p results
+          k6 run ./tests/load_test.js --out json=results/output.json
+
+      # Step 5: Generate HTML report from JSON
+      - name: Generate HTML report
+        run: |
+          npx k6-reporter results/output.json > results/output.html
+
+      # Step 6: Upload JSON and HTML reports as artifacts
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: k6-results
+          path: results/
