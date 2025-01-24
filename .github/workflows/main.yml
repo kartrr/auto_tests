@@ -22,7 +22,7 @@ jobs:
           sudo apt install -y k6
           curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
           sudo apt install -y nodejs
-          
+
       # Step 2: Cache environment
       - name: Cache environment
         uses: actions/cache@v3
@@ -54,23 +54,23 @@ jobs:
             ~/.cache
           key: ${{ runner.os }}-k6-environment
 
-      # Step 2: Add /usr/bin to PATH
-      - name: Add k6 to PATH
-        run: echo "/usr/bin" >> $GITHUB_PATH
+      # Step 2: Add /usr/bin to PATH manually
+      - name: Add k6 binary to PATH
+        run: |
+          export PATH=$PATH:/usr/bin
+          echo $PATH
+          k6 version
 
       # Step 3: Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Step 4: Verify k6 is available
-      - name: Verify k6 installation
-        run: k6 version
-
-      # Step 5: Run k6 tests
+      # Step 4: Run k6 tests
       - name: Run k6 tests
         run: |
           mkdir -p results
           k6 run ./tests/test_script.js --out json=results/output.json
+
 
       # Step 6: Upload test results
       - name: Upload test results
