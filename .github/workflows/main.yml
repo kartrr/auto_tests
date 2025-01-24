@@ -1,0 +1,60 @@
+name: Run k6 Performance Tests with Setup and Execution
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  setup-environment:
+    runs-on: ubuntu-latest
+    outputs:
+      k6-version: ${{ steps.k6-version.outputs.k6_version }}
+
+    steps:
+      # Step 1: Install k6 and Node.js
+      - name: Install k6 and Node.js
+        run: |
+          sudo apt update
+          curl -s https://dl.k6.io/key.gpg | sudo apt-key add -
+          echo "deb https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
+          sudo apt update
+          sudo apt install -y k6
+          curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+          sudo apt install -y nodejs
+
+      # Step 2: Verify installation
+      - name: Verify k6 installation
+        id: k6-version
+        run: k6 version
+        outputs:
+          k6_version: ${{ steps.k6-version.outputs.k6_version }}
+
+      - name: Verify Node.js installation
+        run: |
+          node -v
+          npm -v
+
+  run-tests:
+    runs-on: ubuntu-latest
+    needs: setup-environment  # Эта джоба зависит от setup-environment
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Run k6 tests
+      - name: Run k6 tests
+        run: |
+          mkdir -p results
+          k6 run ./tests/test_script.js --out json=results/output.json
+
+      # Step 3: Upload test results
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: k6-results
+          path: results/
