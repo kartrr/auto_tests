@@ -1,1 +1,1 @@
-[{"uid":"ef3e428688b04c18","name":"Test YouTube search functionality","time":{"start":1737744266280,"stop":1737744271656,"duration":5376},"status":"passed","severity":"normal"}]
+[{"uid":"e5520eadcd802121","name":"Test YouTube search functionality","time":{"start":1737744593859,"stop":1737744598796,"duration":4937},"status":"passed","severity":"normal"},{"uid":"3a3a7f3365b34203","name":"Check YouTube homepage accessibility","time":{"start":1737744591188,"stop":1737744593644,"duration":2456},"status":"passed","severity":"normal"}]

@@ -1,0 +1,1 @@
+YouTube homepage is accessible and returned status code 200.
