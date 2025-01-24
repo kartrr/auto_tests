@@ -1,0 +1,48 @@
+name: Run Playwright Tests with Allure
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  run-playwright-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          playwright install
+
+      # Step 4: Run Playwright tests with Allure
+      - name: Run Playwright tests
+        run: |
+          pytest --alluredir=results/allure-results
+
+      # Step 5: Generate Allure HTML report
+      - name: Generate Allure HTML Report
+        run: |
+          allure generate results/allure-results -o results/allure-report --clean
+
+      # Step 6: Deploy Allure Report to GitHub Pages
+      - name: Deploy Allure Report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: results/allure-report
