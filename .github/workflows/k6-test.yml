@@ -1,0 +1,29 @@
+name: Run k6 Performance Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  k6-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Install k6
+      - name: Install k6
+        run: |
+          sudo apt update
+          sudo apt install -y k6
+
+      # Step 3: Run the k6 test script
+      - name: Run k6 tests
+        run: |
+          k6 run ./tests/test_script.js
