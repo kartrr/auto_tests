@@ -30,22 +30,31 @@ jobs:
           pip install -r requirements.txt
           playwright install
 
-      # Step 4: Run Playwright tests
+      # Step 4: Install Allure CLI
+      - name: Install Allure CLI
+        run: |
+          sudo apt update
+          sudo apt install -y openjdk-11-jdk
+          curl -sLo allure.tgz https://github.com/allure-framework/allure2/releases/download/2.23.0/allure-2.23.0.tgz
+          sudo tar -zxf allure.tgz -C /opt/
+          sudo ln -sf /opt/allure-2.23.0/bin/allure /usr/bin/allure
+
+      # Step 5: Run Playwright tests with Allure
       - name: Run Playwright tests
         run: |
           pytest --alluredir=results/allure-results
 
-      # Step 5: Generate Allure HTML Report
+      # Step 6: Generate Allure HTML Report
       - name: Generate Allure HTML Report
         run: |
           allure generate results/allure-results -o results/allure-report --clean
-
-      # Step 6: Check report existence
+      
+	  # Step 7: Check report existence
       - name: Verify Allure report existence
         run: |
           ls -la results/allure-report
-
-      # Step 7: Deploy Allure Report to GitHub Pages
+		  
+      # Step 8: Deploy Allure Report to GitHub Pages
       - name: Deploy Allure Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
