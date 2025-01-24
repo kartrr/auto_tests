@@ -49,7 +49,7 @@ jobs:
         run: |
           allure generate results/allure-results -o results/allure-report --clean
       
-	  # Step 7: Check report existence
+	# Step 7: Check report existence
       - name: Verify Allure report existence
         run: |
           ls -la results/allure-report
