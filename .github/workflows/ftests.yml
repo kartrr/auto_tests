@@ -48,13 +48,8 @@ jobs:
       - name: Generate Allure HTML Report
         run: |
           allure generate results/allure-results -o results/allure-report --clean
-      
-	# Step 7: Check report existence
-      - name: Verify Allure report existence
-        run: |
-          ls -la results/allure-report
-		  
-      # Step 8: Deploy Allure Report to GitHub Pages
+
+      # Step 7: Deploy Allure Report to GitHub Pages
       - name: Deploy Allure Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
