@@ -1,0 +1,1 @@
+Search functionality works as expected, including image results.

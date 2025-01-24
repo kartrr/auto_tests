@@ -1,0 +1,2 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Fri Jan 24 18:23:42 UTC 2025","Fri Jan 24 18:23:47 UTC 2025","4991","ftests_youtube","test_search","","","","Test YouTube search functionality","Test that YouTube search works and displays results."
