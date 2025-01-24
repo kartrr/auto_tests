@@ -1,0 +1,36 @@
+name: Setup Environment
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  setup-environment:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Install dependencies (k6 and k6-reporter)
+      - name: Install k6 and Node.js
+        run: |
+          sudo apt update
+          curl -s https://dl.k6.io/key.gpg | sudo apt-key add -
+          echo "deb https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
+          sudo apt update
+          sudo apt install -y k6
+          curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+          sudo apt install -y nodejs
+
+      # Step 3: Save environment as artifact
+      - name: Save environment setup as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: environment-setup
+          path: /usr/bin/k6  # Укажите пути к установленным инструментам
