@@ -1,4 +1,5 @@
 import os
+import json
 import pytest
 from playwright.sync_api import Page, expect
 import allure
@@ -16,14 +17,15 @@ def storage_state_file(tmp_path_factory):
         f.write(storage_state)
     return str(storage_state_path)
 
-# Фикстура для страницы, использующая сохранённое состояние авторизации
 @pytest.fixture(scope="function")
 def page_with_auth(playwright, storage_state_file):
     browser = playwright.chromium.launch(
         headless=True,
         args=["--autoplay-policy=no-user-gesture-required"]
     )
-    context = browser.new_context(storage_state=storage_state_file, locale="en-US")
+    with open(storage_state_file, "r", encoding="utf-8") as f:
+        storage_state = json.load(f)
+    context = browser.new_context(storage_state=storage_state, locale="en-US")
     page = context.new_page()
     yield page
     browser.close()
