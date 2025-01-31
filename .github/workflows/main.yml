@@ -1,12 +1,7 @@
 name: Run k6 Performance Tests with Setup and Execution
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   setup-environment:
@@ -75,7 +70,7 @@ jobs:
 
       # Step 6: Upload test results
       - name: Upload test results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: k6-results
           path: results/
@@ -113,7 +108,7 @@ jobs:
 
       # Step 6: Upload test results
       - name: Upload test results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: k6-results
           path: results/
