@@ -1,1 +1,1 @@
-{"total":2,"items":[{"uid":"bb781ee8330e4e771514aa07701fd79e","name":"YouTube Tests","statistic":{"failed":0,"broken":0,"skipped":0,"passed":1,"unknown":0,"total":1}},{"uid":"bc1adcfa533c144f69b7c76e7d1e6990","name":"ftests_youtube","statistic":{"failed":0,"broken":0,"skipped":0,"passed":1,"unknown":0,"total":1}}]}
+{"total":1,"items":[{"uid":"bb781ee8330e4e771514aa07701fd79e","name":"YouTube Tests","statistic":{"failed":0,"broken":0,"skipped":0,"passed":2,"unknown":0,"total":2}}]}
