@@ -11,6 +11,8 @@ def page(playwright):
     yield page
     browser.close()
 
+@allure.parent_suite("YouTube Tests")
+@allure.suite("Search func")
 @allure.title("Test YouTube search functionality")
 def test_youtube_search(page: Page):
     """Test that YouTube search works and displays results."""
