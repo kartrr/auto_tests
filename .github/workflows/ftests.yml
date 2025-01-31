@@ -40,6 +40,10 @@ jobs:
           sudo tar -zxf allure.tgz -C /opt/
           sudo ln -sf /opt/allure-2.23.0/bin/allure /usr/bin/allure
 
+      # Step 4.2: Set environment variables
+      - name: Set environment variables
+        run: echo "YT_STORAGE_STATE=${{ secrets.YT_STORAGE_STATE }}" >> $GITHUB_ENV
+      
       # Step 5: Run Playwright tests
       - name: Run Playwright tests
         run: |
