@@ -42,7 +42,9 @@ jobs:
 
       # Step 4.2: Set environment variables
       - name: Set environment variables
-        run: echo "YT_STORAGE_STATE=$(echo '${{ secrets.YT_STORAGE_STATE }}' | jq -R)" >> $GITHUB_ENV
+        env:
+          YT_STORAGE_STATE: ${{ secrets.YT_STORAGE_STATE }}
+        run: echo "YT_STORAGE_STATE is set"
       
       # Step 5: Run Playwright tests
       - name: Run Playwright tests
