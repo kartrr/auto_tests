@@ -5,8 +5,8 @@ import allure
 
 @pytest.fixture(scope="function")
 def page(playwright):
-    # Открываем браузер (можно переключить headless=True для CI/CD)
-    browser = playwright.chromium.launch(headless=False)
+    # Открываем браузер
+    browser = playwright.chromium.launch(headless=True)
     context = browser.new_context(locale="en-US")
     page = context.new_page()
     yield page
