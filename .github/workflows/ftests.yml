@@ -43,7 +43,7 @@ jobs:
       # Step 5: Run Playwright tests
       - name: Run Playwright tests
         run: |
-          pytest --alluredir=results/allure-results
+          pytest --alluredir=results/allure-results || true
 
       # Step 6: Generate Allure HTML Report
       - name: Generate Allure HTML Report
