@@ -11,6 +11,8 @@ def page(playwright):
     yield page
     browser.close()
 
+@allure.parent_suite("YouTube Tests")
+@allure.suite("Home Page")
 @allure.title("Check YouTube homepage accessibility")
 def test_youtube_homepage_status(page: Page):
     """Test that YouTube homepage is accessible and returns status code 200."""
