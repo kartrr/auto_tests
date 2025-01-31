@@ -6,7 +6,7 @@ import allure
 @pytest.fixture(scope="function")
 def page(playwright):
     # Открываем браузер
-    browser = playwright.chromium.launch(headless=True)
+    browser = playwright.chromium.launch(headless=False)
     context = browser.new_context(locale="en-US")
     page = context.new_page()
     yield page
@@ -14,7 +14,7 @@ def page(playwright):
 
 @allure.parent_suite("YouTube Tests")
 @allure.suite("Video Playback")
-@allure.title("Check YouTube video playback2")
+@allure.title("Check YouTube video playback")
 def test_youtube_video_playback(page: Page):
     """Test that a video on YouTube can be played."""
     url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
