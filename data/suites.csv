@@ -1,4 +1,4 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"skipped","Mon Feb 03 09:23:34 UTC 2025","Mon Feb 03 09:23:34 UTC 2025","0","YouTube Tests","Video Playback","","","","Check YouTube video playback2 (with auth)","Test that a video on YouTube can be played with an authenticated session."
-"passed","Mon Feb 03 09:23:33 UTC 2025","Mon Feb 03 09:23:34 UTC 2025","1618","YouTube Tests","Home Page","","","","Check YouTube homepage accessibility","Test that YouTube homepage is accessible and returns status code 200."
-"passed","Mon Feb 03 09:23:34 UTC 2025","Mon Feb 03 09:23:39 UTC 2025","4938","YouTube Tests","Search func","","","","Test YouTube search functionality","Test that YouTube search works and displays results."
+"skipped","Mon Feb 03 12:06:39 UTC 2025","Mon Feb 03 12:06:39 UTC 2025","0","YouTube Tests","Video Playback","","","","Check YouTube video playback2 (with auth)","Test that a video on YouTube can be played with an authenticated session."
+"passed","Mon Feb 03 12:06:37 UTC 2025","Mon Feb 03 12:06:39 UTC 2025","1619","YouTube Tests","Home Page","","","","Check YouTube homepage accessibility","Test that YouTube homepage is accessible and returns status code 200."
+"passed","Mon Feb 03 12:06:39 UTC 2025","Mon Feb 03 12:06:45 UTC 2025","5389","YouTube Tests","Search func","","","","Test YouTube search functionality","Test that YouTube search works and displays results."
