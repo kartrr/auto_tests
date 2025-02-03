@@ -4,8 +4,8 @@ import { htmlReport } from    "https://raw.githubusercontent.com/benc-uk/k6-repo
 
 
 export let options = {
-  vus: 1, // Количество виртуальных пользователей
-  duration: '30s', // Продолжительность теста
+  vus: 1, // number of users
+  duration: '30s', // test duration
 };
 
 export default function () {
@@ -14,7 +14,7 @@ export default function () {
     'status is 200': (r) => r.status === 200,
     'response time < 500ms': (r) => r.timings.duration < 500,
   });
-  sleep(1); // Пауза между запросами  
+  sleep(1); // Pause
 }
 
 export function handleSummary(data) {
