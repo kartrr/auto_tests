@@ -1,4 +1,4 @@
-I'm learning Automation tools and there are some tests and results of it.
+I'm learning Automation tools and there are some examples of tests and results.
 
 Tech stack:
 - Python
