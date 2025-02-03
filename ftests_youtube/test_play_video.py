@@ -4,14 +4,13 @@ import pytest
 from playwright.sync_api import Page, expect
 import allure
 
-# Фикстура для получения пути к файлу состояния авторизации
-# Состояние передаётся через переменную окружения YT_STORAGE_STATE (содержимое в формате JSON)
+# ficsture for profile state
 @pytest.fixture(scope="session")
 def storage_state_file(tmp_path_factory):
     storage_state = os.getenv("YT_STORAGE_STATE")
     if not storage_state:
-        pytest.skip("Состояние авторизации YouTube не настроено (YT_STORAGE_STATE отсутствует)")
-    # Создаем временный файл для хранения состояния
+        pytest.skip("Authorization state incorrect (There is no YT_STORAGE_STATE)")
+    # tem file for profile state
     storage_state_path = tmp_path_factory.mktemp("data") / "storage_state.json"
     with open(storage_state_path, "w", encoding="utf-8") as f:
         f.write(storage_state)
@@ -55,7 +54,7 @@ def test_youtube_video_playback(page_with_auth: Page):
         page_with_auth.wait_for_selector("video", state="attached", timeout=5000)
 
     with allure.step("Verifying video playback"):
-        page_with_auth.wait_for_timeout(5000)  # Ждем буферизацию
+        page_with_auth.wait_for_timeout(5000)  # buff
         is_playing = page_with_auth.evaluate("document.querySelector('video') && !document.querySelector('video').paused")
         if not is_playing:
             play_button = page_with_auth.locator("button.ytp-play-button")
